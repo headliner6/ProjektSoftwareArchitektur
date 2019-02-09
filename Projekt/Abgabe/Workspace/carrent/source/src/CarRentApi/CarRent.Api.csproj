@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Common\Persistence\" />
+    <Folder Include="ContractsManagement\Controller\" />
+    <Folder Include="ContractsManagement\Domain\" />
+    <Folder Include="ContractsManagement\Persistence\" />
+    <Folder Include="CustomerManagement\Controller\" />
+    <Folder Include="CustomerManagement\Domain\" />
+    <Folder Include="CustomerManagement\Persistence\" />
+    <Folder Include="Foundation\" />
+    <Folder Include="wwwroot\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.1.2" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.1" />
+    <PackageReference Include="MySql.Data" Version="8.0.14" />
+  </ItemGroup>
+
+</Project>
