@@ -6,12 +6,6 @@
 
   <ItemGroup>
     <Folder Include="Common\Persistence\" />
-    <Folder Include="ContractsManagement\Controller\" />
-    <Folder Include="ContractsManagement\Domain\" />
-    <Folder Include="ContractsManagement\Persistence\" />
-    <Folder Include="CustomerManagement\Controller\" />
-    <Folder Include="CustomerManagement\Domain\" />
-    <Folder Include="CustomerManagement\Persistence\" />
     <Folder Include="Foundation\" />
     <Folder Include="wwwroot\" />
   </ItemGroup>
