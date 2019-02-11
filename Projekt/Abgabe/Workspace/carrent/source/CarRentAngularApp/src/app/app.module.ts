@@ -8,6 +8,7 @@ import { NavComponent } from './nav/nav.component';
 import { AutoComponent } from './auto/auto.component';
 import { AdresseComponent } from './adresse/adresse.component';
 import { ReservierungComponent } from './reservierung/reservierung.component';
+import { AgGridModule } from 'ag-grid-angular';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { ReservierungComponent } from './reservierung/reservierung.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    AgGridModule.withComponents([])
   ],
   providers: [],
   bootstrap: [AppComponent]
