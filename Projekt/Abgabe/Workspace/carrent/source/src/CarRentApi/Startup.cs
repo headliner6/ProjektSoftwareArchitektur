@@ -23,7 +23,6 @@ namespace CarRent.API
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddTransient<ICarService, CarService>();
-            services.AddTransient<ICarRepository, CarRepository>();
             services.AddTransient<ICarRepository, MySqlCarRepository>(sp => new MySqlCarRepository("Server = localhost; Database = CarRentDB; Uid = root; Pwd = password"));
         }
 

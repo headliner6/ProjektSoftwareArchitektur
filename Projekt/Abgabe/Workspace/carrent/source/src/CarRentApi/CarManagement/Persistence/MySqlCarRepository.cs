@@ -12,9 +12,9 @@ namespace CarRent.API.CarManagement.Persistence
             _mySqlConnection = new MySqlConnection(connectionString);
         }
 
+
         public IReadOnlyList<Car> GetAll()
         {
-            var carsAsStringsList = new List<string>();
             var cars = new List<Car>();
             _mySqlConnection.Open();
             using (var cmd = _mySqlConnection.CreateCommand())
@@ -24,15 +24,15 @@ namespace CarRent.API.CarManagement.Persistence
                 {
                     while (reader.Read())
                     {
-                        for (var i = 1; i < 7; i++)
-                        {
-                            var data = reader.GetValue(i);
-                            carsAsStringsList.Add((data == null ? "" : data.ToString()));
-                            
-                        }
+                        cars.Add(new Car(
+                            reader.GetString("Marke"),
+                            reader.GetString("Seriennummer"),
+                            reader.GetString("Typ"),
+                            reader.GetString("Farbe")
+                            ));
                     }
                 }
-                return null /*cars*/;
+                return cars;
             }
         }
     }
