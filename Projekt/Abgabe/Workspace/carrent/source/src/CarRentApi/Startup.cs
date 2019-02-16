@@ -1,6 +1,8 @@
 ﻿using CarRent.API.CarManagement.Controller;
 using CarRent.API.CarManagement.Domain;
 using CarRent.API.CarManagement.Persistence;
+using CarRent.API.CustomerManagement.Domain;
+using CarRent.API.CustomerManagement.Persistence;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -23,7 +25,9 @@ namespace CarRent.API
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddTransient<ICarService, CarService>();
+            services.AddTransient<ICustomerService, CustomerService>();
             services.AddTransient<ICarRepository, MySqlCarRepository>(sp => new MySqlCarRepository("Server = localhost; Database = CarRentDB; Uid = root; Pwd = password"));
+            services.AddTransient<ICustomerRepository, MySqlCustomerRepository>(sp => new MySqlCustomerRepository("Server = localhost; Database = CarRentDB; Uid = root; Pwd = password"));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

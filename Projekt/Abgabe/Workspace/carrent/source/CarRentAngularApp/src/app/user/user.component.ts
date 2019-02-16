@@ -1,17 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-auto',
-  templateUrl: './auto.component.html',
-  styleUrls: ['./auto.component.css']
+  selector: 'app-user',
+  templateUrl: './user.component.html',
+  styleUrls: ['./user.component.css']
 })
-export class AutoComponent implements OnInit {
+export class UserComponent implements OnInit {
 
   constructor() { }
 
   ngOnInit() {
   }
-
+  
   columnDefs = [
     {headerName: 'Marke', field: 'marke', sortable: true, filter: true },
     {headerName: 'Seriennummer', field: 'seriennummer', sortable: true, filter: true },

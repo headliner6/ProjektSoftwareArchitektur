@@ -11,8 +11,22 @@ CREATE TABLE CarRentDB.Cars (
 	Vermietet BOOL DEFAULT FALSE,
     PRIMARY KEY (Id))
 ;
-INSERT INTO Cars ( Seriennummer, Marke, Typ, Farbe)
-VALUES
-	('Tumasch', 'Buchli', 'Herr', 'tumasch,buchli@lelek.ch');
-    
-    SELECT * FROM Cars;
+
+CREATE TABLE CarRentDB.Adress(
+	AdressId INT NOT NULL AUTO_INCREMENT,
+    Strasse VARCHAR(45) NULL,
+    Strassennummer VARCHAR(45) NULL,
+    PLZ VARCHAR(45) NULL,
+    Ort VARCHAR(45) NULL,
+    PRIMARY KEY (AdressId))
+;
+
+CREATE TABLE CarRentDB.Customer(
+	CustomerId INT NOT NULL AUTO_INCREMENT,
+    Vorname VARCHAR(45) NULL,
+    Nachname VARCHAR(45) NULL,
+    Telefonnummer VARCHAR(45) NULL,
+    FK_Adressnummer INT NULL,
+    PRIMARY KEY (CustomerId),
+    FOREIGN KEY (FK_Adressnummer) REFERENCES CarRentDB.Adress(AdressID))
+;

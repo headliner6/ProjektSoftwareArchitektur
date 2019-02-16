@@ -35,5 +35,20 @@ namespace CarRent.API.CarManagement.Persistence
                 return cars;
             }
         }
+
+        public void InsertCarDetails(string marke, string seriennummer, string typ, string farbe)
+        {
+            _mySqlConnection.Open();
+            using (var cmd = _mySqlConnection.CreateCommand())
+            {
+                cmd.CommandText = "INSERT INTO Cars(marke, seriennummer, typ, farbe) VALUES (@marke, @seriennummer, @typ, @farbe)";
+                cmd.Parameters.AddWithValue("@marke", marke);
+                cmd.Parameters.AddWithValue("@seriennummer", seriennummer);
+                cmd.Parameters.AddWithValue("@typ", typ);
+                cmd.Parameters.AddWithValue("@farbe", farbe);
+                cmd.ExecuteNonQuery();
+            }
+            _mySqlConnection.Close();
+        }
     }
 }

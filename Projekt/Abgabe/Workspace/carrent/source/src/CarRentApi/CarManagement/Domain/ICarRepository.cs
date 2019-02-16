@@ -5,5 +5,7 @@ namespace CarRent.API.CarManagement.Domain
     public interface ICarRepository
     {
         IReadOnlyList<Car> GetAll();
+
+        void InsertCarDetails(string marke, string seriennummer, string typ, string farbe);
     }
 }

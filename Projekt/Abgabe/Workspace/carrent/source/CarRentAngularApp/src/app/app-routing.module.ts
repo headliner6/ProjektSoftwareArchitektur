@@ -1,13 +1,12 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { AutoComponent } from './auto/auto.component';
-import { AdresseComponent } from './adresse/adresse.component';
-import { ReservierungComponent } from './reservierung/reservierung.component';
+import { AdministratorComponent} from './administrator/administrator.component';
+import { UserComponent} from './user/user.component';
 
 const routes: Routes = [
-  {path: '', component: AutoComponent},
-  {path: 'adresse', component: AdresseComponent},
-  {path: 'reservierung', component: ReservierungComponent}
+  {path: '', component: UserComponent},
+  {path: 'administrator', component: AdministratorComponent},
+  {path: 'user', component: UserComponent}
 ];
 
 @NgModule({

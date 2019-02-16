@@ -13,7 +13,12 @@ namespace CarRent.API.CarManagement.Domain
 
         public IReadOnlyList<Car> GetAll()
         {
-            return _carRepository.GetAll();
+            return this._carRepository.GetAll();
+        }
+
+        public void InsertCarDetails(string marke, string seriennummer, string typ, string farbe)
+        {
+            this._carRepository.InsertCarDetails(marke, seriennummer, typ, farbe);
         }
     }
 }

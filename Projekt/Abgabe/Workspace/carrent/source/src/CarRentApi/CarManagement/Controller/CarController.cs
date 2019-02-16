@@ -18,13 +18,12 @@ namespace CarRent.API.CarManagement.Controller
             this._carService = carService;
         }
 
-
         // GET: api/Car
         [HttpGet]
         public IEnumerable<CarDto> Get()
         {
             IReadOnlyList<Car> cars = _carService.GetAll();
-            return cars.Select(c => new CarDto(c.Marke, c.Seriennummer, c.Typ, c.Vermietet));
+            return cars.Select(c => new CarDto(c.Marke, c.Seriennummer, c.Typ,c.Farbe, c.Vermietet));
 
             //List<CarDto> carDtos = new List<CarDto>();
             //foreach (var c in cars)
@@ -50,6 +49,11 @@ namespace CarRent.API.CarManagement.Controller
 
         }
 
+        [HttpPut()]
+        public void Put()
+        {
+            _carService.InsertCarDetails("Porsche", "6574687WERWR", "Sport", "Silber");
+        }
         // PUT: api/Car/5
         [HttpPut("{id}")]
         public void Put(int id, [FromBody] string value)

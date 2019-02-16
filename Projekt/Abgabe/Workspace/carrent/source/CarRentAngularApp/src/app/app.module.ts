@@ -5,18 +5,16 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavComponent } from './nav/nav.component';
-import { AutoComponent } from './auto/auto.component';
-import { AdresseComponent } from './adresse/adresse.component';
-import { ReservierungComponent } from './reservierung/reservierung.component';
 import { AgGridModule } from 'ag-grid-angular';
+import { AdministratorComponent } from './administrator/administrator.component';
+import { UserComponent } from './user/user.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavComponent,
-    AutoComponent,
-    AdresseComponent,
-    ReservierungComponent
+    AdministratorComponent,
+    UserComponent
   ],
   imports: [
     BrowserModule,
