@@ -1,20 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using CarRent.API.CustomerManagement.Domain;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace CarRent.API.CustomerManagement.Controller
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class CusomterController : ControllerBase
+    public class CustomerController : ControllerBase
     {
         private readonly ICustomerService _customerService;
 
-        public CusomterController(ICustomerService customerService)
+        public CustomerController(ICustomerService customerService)
         {
             this._customerService = customerService;
         }
@@ -29,7 +27,7 @@ namespace CarRent.API.CustomerManagement.Controller
         }
 
         // GET: api/Cusomter/5
-        [HttpGet("{id}", Name = "Get")]
+        [HttpGet("{id}", Name = "GetCustomer")]
         public string Get(int id)
         {
             return "value";
@@ -39,6 +37,13 @@ namespace CarRent.API.CustomerManagement.Controller
         [HttpPost]
         public void Post([FromBody] string value)
         {
+        }
+
+        // PUT: api/Cusomter
+        [HttpPut]
+        public void Put()
+        {
+            _customerService.InsertCustomerDetails("M.", "W.", "+41678787977", "Teststrasse", "25", "9000", "St. Gallen");
         }
 
         // PUT: api/Cusomter/5

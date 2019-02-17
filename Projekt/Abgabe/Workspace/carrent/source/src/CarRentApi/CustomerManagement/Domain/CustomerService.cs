@@ -15,5 +15,10 @@ namespace CarRent.API.CustomerManagement.Domain
         {
             return this._customerRepository.GetAll();
         }
+
+        public void InsertCustomerDetails(string vorname, string nachname, string telefonnummer, string strasse, string strassennummer, string plz, string ort)
+        {
+            _customerRepository.InsertCustomerDetails(vorname, nachname, telefonnummer, strasse, strassennummer, plz, ort);
+        }
     }
 }

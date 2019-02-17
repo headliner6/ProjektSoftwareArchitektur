@@ -1,4 +1,4 @@
-USE CarRentDB;
+USE carrentdb;
 
 INSERT INTO Cars ( Seriennummer, Marke, Typ, Farbe)
 VALUES
@@ -17,6 +17,7 @@ VALUES
     
     #SELECT * FROM Cars;
     #SELECT * FROM Adress;
-    #SELECT * FROM Customers;
-    
-    #SELECT * FROM Customer INNER JOIN Adress ON Customer.CustomerId = Adress.AdressId;
+    #SELECT * FROM Customer;
+    #DELETE FROM Customer WHERE CustomerId = 3;
+    #SELECT * FROM Customer INNER JOIN Adress ON Customer.CustomerId = Adress.AdressId
+   

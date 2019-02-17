@@ -1,6 +1,8 @@
 ﻿using CarRent.API.CustomerManagement.Domain;
 using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
+using System.Data;
 
 namespace CarRent.API.CustomerManagement.Persistence
 {
@@ -19,7 +21,7 @@ namespace CarRent.API.CustomerManagement.Persistence
             _mySqlConnection.Open();
             using (var cmd = _mySqlConnection.CreateCommand())
             {
-                cmd.CommandText = "SELECT * FROM Customer INNER JOIN Adress ON Customer.CustomerId = Adress.AdressID";
+                cmd.CommandText = "SELECT * FROM Customer INNER JOIN Adress ON Customer.CustomerId = Adress.AdressId";
                 using (var reader = cmd.ExecuteReader())
                 {
                     while (reader.Read())
@@ -30,7 +32,7 @@ namespace CarRent.API.CustomerManagement.Persistence
                             reader.GetString("Telefonnummer"),
                             reader.GetString("Strasse"),
                             reader.GetString("Strassennummer"),
-                            reader.GetInt32("PLZ"),
+                            reader.GetString("PLZ"),
                             reader.GetString("Ort")
                             ));
                     }
@@ -38,20 +40,32 @@ namespace CarRent.API.CustomerManagement.Persistence
                 return customers;
             }
         }
-
-        //public void InsertCarDetails(string marke, string seriennummer, string typ, string farbe)
-        //{
-        //    _mySqlConnection.Open();
-        //    using (var cmd = _mySqlConnection.CreateCommand())
-        //    {
-        //        cmd.CommandText = "INSERT INTO  VALUES (@, @, @, @)";
-        //        cmd.Parameters.AddWithValue("@", marke);
-        //        cmd.Parameters.AddWithValue("@", seriennummer);
-        //        cmd.Parameters.AddWithValue("@", typ);
-        //        cmd.Parameters.AddWithValue("@", farbe);
-        //        cmd.ExecuteNonQuery();
-        //    }
-        //    _mySqlConnection.Close();
-        //}
+        
+        public void InsertCustomerDetails(string vorname, string nachname, string telefonnummer, string strasse, string strassennummer, string plz, string ort)
+        {
+            try
+            {
+                _mySqlConnection.Open();
+                using (var cmd = _mySqlConnection.CreateCommand())
+                {
+                    cmd.CommandText = "InsertIntoCustomer";
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@iVorname", vorname);
+                    cmd.Parameters.AddWithValue("@iNachname", nachname);
+                    cmd.Parameters.AddWithValue("@iTelefonnummer", telefonnummer);
+                    cmd.Parameters.AddWithValue("@iStrasse", strasse);
+                    cmd.Parameters.AddWithValue("@iStrassennummer", strassennummer);
+                    cmd.Parameters.AddWithValue("@iPLZ", plz);
+                    cmd.Parameters.AddWithValue("@iOrt", ort);
+                    cmd.ExecuteNonQuery();
+                }
+                _mySqlConnection.Close();
+            }
+            catch (Exception ex)
+            {
+                
+            }
+            
+        }
     }
 }

@@ -13,7 +13,7 @@ namespace CarRent.API.CustomerManagement.Domain
         public string Telefonnummer { get; }
         public Adresse Adresse { get; }
 
-        public Customer(string vorname, string nachname, string telefonnummer, string strasse,string strassennummer, int plz, string ort)
+        public Customer(string vorname, string nachname, string telefonnummer, string strasse,string strassennummer, string plz, string ort)
         {
             this.Vorname = vorname;
             this.Nachname = nachname;

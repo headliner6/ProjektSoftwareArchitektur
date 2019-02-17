@@ -9,10 +9,10 @@ namespace CarRent.API.CustomerManagement.Domain
     {
         public string Strasse { get; }
         public string Strassennummer { get; }
-        public int PLZ { get; }
+        public string PLZ { get; }
         public string Ort { get; }
 
-        public Adresse(string strasse, string strassennummer, int plz, string ort)
+        public Adresse(string strasse, string strassennummer, string plz, string ort)
         {
             this.Strasse = strasse;
             this.Strassennummer = strassennummer;

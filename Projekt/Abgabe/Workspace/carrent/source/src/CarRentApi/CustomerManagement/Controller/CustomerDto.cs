@@ -11,15 +11,14 @@ namespace CarRent.API.CustomerManagement.Controller
         public Adresse Adresse { get; }
         public string Strasse { get; }
         public string Strassennummer { get; }
-        public int PLZ { get; }
+        public string PLZ { get; }
         public string Ort { get; }
 
-        public CustomerDto(string vorname, string nachname, string telefonnummer, Adresse adresse, string strasse, string strassennummer, int plz, string ort)
+        public CustomerDto(string vorname, string nachname, string telefonnummer, string strasse, string strassennummer, string plz, string ort)
         {
             this.Vorname = vorname;
             this.Nachname = nachname;
             this.Telefonnummer = telefonnummer;
-            this.Adresse = adresse;
             this.Strasse = strasse;
             this.Strassennummer = strassennummer;
             this.PLZ = plz;
