@@ -22,7 +22,6 @@ namespace CarRent.API.CarManagement.Controller
         [HttpGet]
         public IEnumerable<CarDto> Get()
         {
-            this.Put();
             IReadOnlyList<Car> cars = _carService.GetAll();
             return cars.Select(c => new CarDto(c.Marke, c.Seriennummer, c.Typ,c.Farbe, c.Vermietet));
             
@@ -47,7 +46,7 @@ namespace CarRent.API.CarManagement.Controller
         [HttpPost]
         public void Post([FromBody] string value)
         {
-
+            _carService.AutoVermietet("AUSE12388", true);
         }
 
         [HttpPut()]

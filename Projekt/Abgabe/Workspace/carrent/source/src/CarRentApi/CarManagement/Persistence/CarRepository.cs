@@ -12,6 +12,12 @@ namespace CarRent.API.CarManagement.Persistence
         {
             this._cars = new List<Car>();
         }
+
+        public void AutoVermietet(string seriennummer, bool vermietet)
+        {
+            throw new NotImplementedException();
+        }
+
         public IReadOnlyList<Car> GetAll()
         {
             _cars.Add(new Car("VW", "123", "Sport", "Blau"));

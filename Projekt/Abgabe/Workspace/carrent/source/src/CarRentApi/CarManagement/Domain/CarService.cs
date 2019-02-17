@@ -11,6 +11,11 @@ namespace CarRent.API.CarManagement.Domain
             this._carRepository = carRepository;
         }
 
+        public void AutoVermietet(string seriennummer, bool vermietet)
+        {
+            this._carRepository.AutoVermietet(seriennummer, vermietet);
+        }
+
         public IReadOnlyList<Car> GetAll()
         {
             return this._carRepository.GetAll();

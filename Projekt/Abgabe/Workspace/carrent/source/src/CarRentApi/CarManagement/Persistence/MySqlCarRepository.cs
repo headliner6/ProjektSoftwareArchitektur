@@ -12,6 +12,17 @@ namespace CarRent.API.CarManagement.Persistence
             _mySqlConnection = new MySqlConnection(connectionString);
         }
 
+        public void AutoVermietet(string seriennummer, bool vermietet)
+        {
+            _mySqlConnection.Open();
+            using (var cmd = _mySqlConnection.CreateCommand())
+            {
+                cmd.CommandText = "UPDATE Cars SET Vermietet = @vermietet WHERE Seriennummer = @seriennummer";
+                cmd.Parameters.AddWithValue("@vermietet", vermietet);
+                cmd.Parameters.AddWithValue("@seriennummer", seriennummer);
+                cmd.ExecuteNonQuery();
+            }
+        }
 
         public IReadOnlyList<Car> GetAll()
         {

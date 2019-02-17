@@ -7,5 +7,7 @@ namespace CarRent.API.CarManagement.Domain
         IReadOnlyList<Car> GetAll();
 
         void InsertCarDetails(string marke, string seriennummer, string typ, string farbe);
+
+        void AutoVermietet(string seriennummer, bool vermietet);
     }
 }
