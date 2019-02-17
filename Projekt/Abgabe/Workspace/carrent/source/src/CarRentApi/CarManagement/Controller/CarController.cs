@@ -4,6 +4,7 @@ using CarRent.API.CarManagement.Domain;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
 using CarRent.API.CustomerManagement.Controller;
+using System;
 
 namespace CarRent.API.CarManagement.Controller
 {
@@ -46,20 +47,30 @@ namespace CarRent.API.CarManagement.Controller
         [HttpPost]
         public void Post([FromBody] string value)
         {
-            _carService.AutoVermietet("AUSE12388", true);
+            _carService.InsertCarDetails("Porsche", "6574687WERWR", "Sport", "Silber");
         }
 
         [HttpPut()]
         public void Put()
         {
-            _carService.InsertCarDetails("Porsche", "6574687WERWR", "Sport", "Silber");
+            _carService.AutoVermietet("AUSE12388", true);
         }
 
 
         // PUT: api/Car/5
-        [HttpPut("{id}")]
+        [HttpPut("{marke}")] // TODO: Parameter "Marke", "Seriennummer", "Typ", "Farbe" soll von der Angular App übergeben werden
         public void Put(int id, [FromBody] string value)
         {
+        }
+        
+        [HttpPut("{id}")]
+        public ActionResult UpdateCarDetails(int id, [FromBody]CarDto carModel)
+        {
+            // get car via carservice (filter int id)
+            // wenn nicht gefunden -> return NotFound();
+            // map dto -> car
+            //_carService.AutoVermietet(id);
+            throw new NotImplementedException();
         }
 
         // DELETE: api/ApiWithActions/5

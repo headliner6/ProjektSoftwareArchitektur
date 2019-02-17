@@ -15,9 +15,9 @@ VALUES
 	('Hans', 'Muster', '+41 HANS MUSTER', 1),
     ('Fritz', 'Test', '+41 FRITZ TEST', 2);
     
-    SELECT * FROM Cars;
-    #SELECT * FROM Adress;
-    #SELECT * FROM Customer;
+    #SELECT * FROM Cars;
+    SELECT * FROM Adress;
+    SELECT * FROM Customer;
     #DELETE FROM Customer WHERE CustomerId = 3;
     #SELECT * FROM Customer INNER JOIN Adress ON Customer.CustomerId = Adress.AdressId
    
