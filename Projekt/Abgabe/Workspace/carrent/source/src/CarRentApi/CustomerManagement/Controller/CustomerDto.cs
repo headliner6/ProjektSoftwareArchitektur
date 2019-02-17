@@ -7,15 +7,14 @@ namespace CarRent.API.CustomerManagement.Controller
         public string Nachname { get; }
         public int Kundennummer { get; }
         public string Telefonnummer { get; }
-
-        public Adresse Adresse { get; }
         public string Strasse { get; }
         public string Strassennummer { get; }
         public string PLZ { get; }
         public string Ort { get; }
 
-        public CustomerDto(string vorname, string nachname, string telefonnummer, string strasse, string strassennummer, string plz, string ort)
+        public CustomerDto(int kundennummer, string vorname, string nachname, string telefonnummer, string strasse, string strassennummer, string plz, string ort)
         {
+            this.Kundennummer = kundennummer;
             this.Vorname = vorname;
             this.Nachname = nachname;
             this.Telefonnummer = telefonnummer;

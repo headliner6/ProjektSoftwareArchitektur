@@ -19,11 +19,10 @@ namespace CarRent.API.CustomerManagement.Controller
 
         // GET: api/Cusomter
         [HttpGet]
-        public IEnumerable<string> Get()
+        public IEnumerable<CustomerDto> Get()
         {
             IReadOnlyList<Customer> customers = _customerService.GetAll();
-            //return customers.Select(c => new CustomerDto());
-            return null;
+            return customers.Select(c => new CustomerDto(c.Kundennummer, c.Vorname, c.Nachname, c.Telefonnummer, c.Adresse.Strasse, c.Adresse.Strassennummer, c.Adresse.PLZ, c.Adresse.Ort));
         }
 
         // GET: api/Cusomter/5

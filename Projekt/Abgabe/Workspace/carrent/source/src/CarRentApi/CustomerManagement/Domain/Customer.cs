@@ -13,8 +13,9 @@ namespace CarRent.API.CustomerManagement.Domain
         public string Telefonnummer { get; }
         public Adresse Adresse { get; }
 
-        public Customer(string vorname, string nachname, string telefonnummer, string strasse,string strassennummer, string plz, string ort)
+        public Customer(int kundennummer, string vorname, string nachname, string telefonnummer, string strasse,string strassennummer, string plz, string ort)
         {
+            this.Kundennummer = kundennummer;
             this.Vorname = vorname;
             this.Nachname = nachname;
             this.Telefonnummer = telefonnummer;

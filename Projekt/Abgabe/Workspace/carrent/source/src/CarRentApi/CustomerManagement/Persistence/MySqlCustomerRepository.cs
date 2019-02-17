@@ -27,6 +27,7 @@ namespace CarRent.API.CustomerManagement.Persistence
                     while (reader.Read())
                     {
                         customers.Add(new Customer(
+                            reader.GetInt32("CustomerId"),
                             reader.GetString("Vorname"),
                             reader.GetString("Nachname"),
                             reader.GetString("Telefonnummer"),
