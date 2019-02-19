@@ -1,5 +1,4 @@
-﻿using CarRent.API.CarManagement.Domain;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace CarRent.API.CarManagement.Controller
 {
@@ -7,15 +6,17 @@ namespace CarRent.API.CarManagement.Controller
     {
         public string Marke { get; }
         public string Seriennummer { get; }
-        public string Typ { get; }
         public string Farbe { get;  }
+        public string AutoKlasse { get; }
+        public decimal TagesPreis { get; }
         public bool Vermietet { get; }
-        public CarDto(string marke, string seriennummer, string typ, string farbe, bool vermietet)
+        public CarDto(string marke, string seriennummer, string farbe, string autoKlasse, decimal tagesPreis, bool vermietet)
         {
             Marke = marke;
             Seriennummer = seriennummer;
-            Typ = typ;
             Farbe = farbe;
+            AutoKlasse = autoKlasse;
+            TagesPreis = tagesPreis;
             Vermietet = vermietet;
         }
     }

@@ -44,8 +44,6 @@ namespace CarRent.API.CustomerManagement.Persistence
         
         public void InsertCustomerDetails(string vorname, string nachname, string telefonnummer, string strasse, string strassennummer, string plz, string ort)
         {
-            try
-            {
                 _mySqlConnection.Open();
                 using (var cmd = _mySqlConnection.CreateCommand())
                 {
@@ -60,13 +58,7 @@ namespace CarRent.API.CustomerManagement.Persistence
                     cmd.Parameters.AddWithValue("@iOrt", ort);
                     cmd.ExecuteNonQuery();
                 }
-                _mySqlConnection.Close();
-            }
-            catch (Exception ex)
-            {
-                
-            }
-            
+                _mySqlConnection.Close();          
         }
     }
 }

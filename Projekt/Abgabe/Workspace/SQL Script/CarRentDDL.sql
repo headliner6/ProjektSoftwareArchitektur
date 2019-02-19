@@ -2,14 +2,31 @@ CREATE DATABASE IF NOT EXISTS carrentdb;
 
 USE carrentdb;
 
+CREATE TABLE IF NOT EXISTS carrentdb.DailyPrice(
+	DailyPriceId INT NOT NULL AUTO_INCREMENT,
+    Waehrung VARCHAR(45) NULL,
+    Preis DECIMAL NULL,
+    Datum DATETIME NULL,
+    PRIMARY KEY (DailyPriceId))
+;
+
+CREATE TABLE IF NOT EXISTS carrentdb.CarClass(
+	CarClassId INT NOT NULL AUTO_INCREMENT,
+    CarClass ENUM('Luxus', 'Normal', 'Sport'),
+    FK_DailyPriceId INT NULL,
+    PRIMARY KEY (CarClassId),
+    FOREIGN KEY (FK_DailyPriceId) REFERENCES carrentdb.DailyPrice(DailyPriceId))
+;
+    
 CREATE TABLE IF NOT EXISTS carrentdb.Cars (
-	Id INT NOT NULL AUTO_INCREMENT,
+	CarId INT NOT NULL AUTO_INCREMENT,
 	Marke VARCHAR(45) NULL,
 	Seriennummer VARCHAR(45) NULL,
-	Typ VARCHAR(45) NULL,
 	Farbe VARCHAR(45) NULL,
 	Vermietet BOOL DEFAULT FALSE,
-    PRIMARY KEY (Id))
+    FK_CarClassId INT NULL,
+    PRIMARY KEY (CarId),
+    FOREIGN KEY (FK_CarClassId) REFERENCES carrentdb.CarClass(CarClassId))
 ;
 
 CREATE TABLE IF NOT EXISTS carrentdb.Adress(
@@ -26,9 +43,9 @@ CREATE TABLE IF NOT EXISTS carrentdb.Customer(
     Vorname VARCHAR(45) NULL,
     Nachname VARCHAR(45) NULL,
     Telefonnummer VARCHAR(45) NULL,
-    FK_Adressnummer INT NULL,
+    FK_AdressId INT NULL,
     PRIMARY KEY (CustomerId),
-    FOREIGN KEY (FK_Adressnummer) REFERENCES carrentdb.Adress(AdressID))
+    FOREIGN KEY (FK_AdressId) REFERENCES carrentdb.Adress(AdressID))
 ;
 
 DELIMITER //
@@ -51,7 +68,7 @@ BEGIN
     
     SET lastAdressId = LAST_INSERT_ID();
     
-    INSERT INTO Customer (Vorname, Nachname, Telefonnummer, FK_Adressnummer)
+    INSERT INTO Customer (Vorname, Nachname, Telefonnummer, FK_AdressId)
     VALUES
     (iVorname, iNachname, iTelefonnummer, lastAdressId);
     

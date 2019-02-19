@@ -23,8 +23,8 @@ namespace CarRent.API.CarManagement.Controller
         [HttpGet(Name = "GetAllCars")]
         public IEnumerable<CarDto> GetAllCarDtos()
         {
-            IReadOnlyList<Car> cars = _carService.GetAll();
-            return cars.Select(c => new CarDto(c.Marke, c.Seriennummer, c.Typ,c.Farbe, c.Vermietet));
+            IReadOnlyList<Car> cars = _carService.GetAllCars();
+            return cars.Select(c => new CarDto(c.Marke, c.Seriennummer, c.Farbe, c.AutoKlasse.AutoKlasse.ToString(),c.AutoKlasse.DailyPrice.Price,c.Vermietet));
             
             //List<CarDto> carDtos = new List<CarDto>();
             //foreach (var c in cars)
@@ -37,8 +37,8 @@ namespace CarRent.API.CarManagement.Controller
         }
 
         // GET: api/Car
-        [HttpGet(Name = "GetCarClass")]
-        public IEnumerable<CarClass> GetCarClasses()
+        [HttpGet("{autoKlasse}", Name = "GetCarClass")]
+        public IEnumerable<Car> GetCarClasses()
         {
             return null;
         }

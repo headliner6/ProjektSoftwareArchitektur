@@ -4,18 +4,16 @@
     {
         public string Marke { get; }
         public string Seriennummer { get; }
-        public string Typ { get; }
         public string Farbe { get; }
         public bool Vermietet { get; }
-        public CarClass CarClass { get; }
+        public CarClass AutoKlasse { get; }
 
-        public Car(string marke, string seriennummer, string typ, string farbe, CarClass carClass)
+        public Car(string marke, string seriennummer, string farbe, CarClass autoKlasse)
         {
             this.Marke = marke;
             this.Seriennummer = seriennummer;
-            this.Typ = typ;
             this.Farbe = farbe;
-            this.CarClass = carClass;
+            this.AutoKlasse = autoKlasse;
             this.Vermietet = false;
         }
 

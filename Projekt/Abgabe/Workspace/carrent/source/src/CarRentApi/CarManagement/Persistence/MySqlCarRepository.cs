@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using CarRent.API.CarManagement.Domain;
 using MySql.Data.MySqlClient;
 
@@ -24,22 +25,33 @@ namespace CarRent.API.CarManagement.Persistence
             }
         }
 
-        public IReadOnlyList<Car> GetAll()
+        public IReadOnlyList<Car> GetAllCars()
         {
             var cars = new List<Car>();
             _mySqlConnection.Open();
             using (var cmd = _mySqlConnection.CreateCommand())
             {
-                cmd.CommandText = "SELECT * FROM CarRentDB.Cars";
+                cmd.CommandText =
+                    "SELECT * FROM (carrentdb.Cars INNER JOIN carrentdb.CarClass ON Cars.FK_CarClassId = CarClass.CarClassId) INNER JOIN carrentdb.DailyPrice ON CarClass.FK_DailyPriceId = DailyPrice.DailyPriceId";
                 using (var reader = cmd.ExecuteReader())
                 {
                     while (reader.Read())
                     {
+                        var dailyPrice = new DailyPrice(
+                            reader.GetString("Waehrung"),
+                            reader.GetDecimal("Preis")
+                            );
+                        
+                        var carClass = new CarClass(
+                            (AutoKlasse)Enum.Parse(typeof(AutoKlasse), reader.GetString("CarClass")),
+                            dailyPrice
+                            );
+
                         cars.Add(new Car(
                             reader.GetString("Marke"),
                             reader.GetString("Seriennummer"),
-                            reader.GetString("Typ"),
-                            reader.GetString("Farbe")
+                            reader.GetString("Farbe"),
+                            carClass
                             ));
                     }
                 }
@@ -47,19 +59,18 @@ namespace CarRent.API.CarManagement.Persistence
             }
         }
 
-        public void InsertCarDetails(string marke, string seriennummer, string typ, string farbe)
+        public void InsertCarDetails(string marke, string seriennummer, string farbe)
         {
-            _mySqlConnection.Open();
-            using (var cmd = _mySqlConnection.CreateCommand())
-            {
-                cmd.CommandText = "INSERT INTO Cars(marke, seriennummer, typ, farbe) VALUES (@marke, @seriennummer, @typ, @farbe)";
-                cmd.Parameters.AddWithValue("@marke", marke);
-                cmd.Parameters.AddWithValue("@seriennummer", seriennummer);
-                cmd.Parameters.AddWithValue("@typ", typ);
-                cmd.Parameters.AddWithValue("@farbe", farbe);
-                cmd.ExecuteNonQuery();
-            }
-            _mySqlConnection.Close();
+            throw new NotImplementedException();
         }
+
+        //public void InsertCarDetails(string marke, string seriennummer, string farbe)
+        //{
+        //    _mySqlConnection.Open();
+        //    using (var cmd = _mySqlConnection.CreateCommand())
+        //    {
+        //    }
+        //    _mySqlConnection.Close();
+        //}
     }
 }

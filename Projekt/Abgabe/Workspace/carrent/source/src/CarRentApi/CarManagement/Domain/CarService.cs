@@ -16,14 +16,19 @@ namespace CarRent.API.CarManagement.Domain
             this._carRepository.AutoVermietet(seriennummer, vermietet);
         }
 
-        public IReadOnlyList<Car> GetAll()
+        public IReadOnlyList<Car> GetAllCars()
         {
-            return this._carRepository.GetAll();
+            return this._carRepository.GetAllCars();
         }
 
         public void InsertCarDetails(string marke, string seriennummer, string typ, string farbe)
         {
-            this._carRepository.InsertCarDetails(marke, seriennummer, typ, farbe);
+            throw new System.NotImplementedException();
         }
+
+        //public void InsertCarDetails(string marke, string seriennummer, string typ, string farbe)
+        //{
+        //    this._carRepository.InsertCarDetails(marke, seriennummer, typ, farbe);
+        //}
     }
 }

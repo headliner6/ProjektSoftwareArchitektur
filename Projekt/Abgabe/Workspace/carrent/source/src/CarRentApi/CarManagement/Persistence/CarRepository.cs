@@ -18,16 +18,13 @@ namespace CarRent.API.CarManagement.Persistence
             throw new NotImplementedException();
         }
 
-        public IReadOnlyList<Car> GetAll()
+        public IReadOnlyList<Car> GetAllCars()
         {
-            _cars.Add(new Car("VW", "123", "Sport", "Blau"));
-            _cars.Add(new Car("BMW", "456", "Luxus", "Gruen"));
-            return _cars;
+            return null;
         }
 
-        public void InsertCarDetails(string marke, string seriennummer, string typ, string farbe)
+        public void InsertCarDetails(string marke, string seriennummer, string typ)
         {
-            _cars.Add(new Car(marke, seriennummer, typ, farbe));
         }
     }
 }
