@@ -20,8 +20,8 @@ namespace CarRent.API.CarManagement.Controller
         }
 
         // GET: api/Car
-        [HttpGet]
-        public IEnumerable<CarDto> Get()
+        [HttpGet(Name = "GetAllCars")]
+        public IEnumerable<CarDto> GetAllCarDtos()
         {
             IReadOnlyList<Car> cars = _carService.GetAll();
             return cars.Select(c => new CarDto(c.Marke, c.Seriennummer, c.Typ,c.Farbe, c.Vermietet));
@@ -36,11 +36,11 @@ namespace CarRent.API.CarManagement.Controller
 
         }
 
-        // GET: api/Car/5
-        [HttpGet("{id}", Name = "GetCar")]
-        public string Get(int id)
+        // GET: api/Car
+        [HttpGet(Name = "GetCarClass")]
+        public IEnumerable<CarClass> GetCarClasses()
         {
-            return "value";
+            return null;
         }
 
         // POST: api/Car
@@ -50,16 +50,16 @@ namespace CarRent.API.CarManagement.Controller
             _carService.InsertCarDetails("Porsche", "6574687WERWR", "Sport", "Silber");
         }
 
-        [HttpPut()]
-        public void Put()
+        [HttpPut("{seriennummer}")]
+        public void AutoVermietet(string seriennummer)
         {
-            _carService.AutoVermietet("AUSE12388", true);
+            _carService.AutoVermietet(seriennummer, true);
         }
 
 
         // PUT: api/Car/5
         [HttpPut("{marke}")] // TODO: Parameter "Marke", "Seriennummer", "Typ", "Farbe" soll von der Angular App übergeben werden
-        public void Put(int id, [FromBody] string value)
+        public void Put(int marke, [FromBody] string value)
         {
         }
         
