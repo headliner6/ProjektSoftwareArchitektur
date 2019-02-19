@@ -23,8 +23,9 @@ namespace CarRent.API.CarManagement.Persistence
             return null;
         }
 
-        public void InsertCarDetails(string marke, string seriennummer, string typ)
+        public void InsertCarDetails(string waehrung, decimal preis, string seriennummer, string farbe, string marke, string autoKlasse)
         {
+            throw new NotImplementedException();
         }
     }
 }

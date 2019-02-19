@@ -34,15 +34,15 @@ namespace CarRent.API.CustomerManagement.Controller
 
         // POST: api/Cusomter
         [HttpPost]
-        public void Post([FromBody] string value)
+        public void Post(/*[FromBody] string value*/)
         {
+            _customerService.InsertCustomerDetails("M.", "W.", "+41678787977", "Teststrasse", "25", "9000", "St. Gallen");
         }
 
         // PUT: api/Cusomter
         [HttpPut]
         public void Put()
         {
-            _customerService.InsertCustomerDetails("M.", "W.", "+41678787977", "Teststrasse", "25", "9000", "St. Gallen");
         }
 
         // PUT: api/Cusomter/5

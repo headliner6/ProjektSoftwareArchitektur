@@ -45,9 +45,9 @@ namespace CarRent.API.CarManagement.Controller
 
         // POST: api/Car
         [HttpPost]
-        public void Post([FromBody] string value)
+        public void Post(/*[FromBody] string value*/)
         {
-            _carService.InsertCarDetails("Porsche", "6574687WERWR", "Sport", "Silber");
+            _carService.InsertCarDetails("EUR", (decimal)1.11, "EU5566", "Silber", "Porsche", "Luxus");
         }
 
         [HttpPut("{seriennummer}")]

@@ -21,14 +21,9 @@ namespace CarRent.API.CarManagement.Domain
             return this._carRepository.GetAllCars();
         }
 
-        public void InsertCarDetails(string marke, string seriennummer, string typ, string farbe)
+        public void InsertCarDetails(string waehrung, decimal preis, string seriennummer, string farbe, string marke, string autoKlasse)
         {
-            throw new System.NotImplementedException();
+            this._carRepository.InsertCarDetails(waehrung, preis, seriennummer, farbe, marke, autoKlasse);
         }
-
-        //public void InsertCarDetails(string marke, string seriennummer, string typ, string farbe)
-        //{
-        //    this._carRepository.InsertCarDetails(marke, seriennummer, typ, farbe);
-        //}
     }
 }

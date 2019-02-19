@@ -49,6 +49,60 @@ CREATE TABLE IF NOT EXISTS carrentdb.Customer(
 ;
 
 DELIMITER //
+CREATE PROCEDURE InstertIntoCar
+(	
+	#Parameter for DailyPrice
+	IN iWaehrung VARCHAR(45),
+    IN iPreis DECIMAL,
+    
+    #Parameter for CarClass
+    IN iCarClass VARCHAR(45),
+    
+    #Parameter for Car
+    IN iMarke VARCHAR(45),
+    IN iSeriennummer VARCHAR(45),
+    IN iFarbe VARCHAR(45)
+)
+BEGIN
+	DECLARE lastDailyPriceId INT;
+    DECLARE lastCarClassId INT;
+    
+    #Existiert die Währung schon, wird der Preis und das Tagesdatum angepasst
+    #Ansonsten wird die gefundene Währung updatet
+    IF(EXISTS(SELECT * FROM DailyPrice WHERE Waehrung = iWaehrung))
+    THEN
+		UPDATE DailyPrice SET Preis = iPreis, Datum = NOW()
+        WHERE Waehrung = iWaehrung;
+    ELSE
+		INSERT INTO DailyPrice (Waehrung, Preis, Datum)
+		VALUES
+			(iWaehrung, iPreis, NOW());
+	END IF;
+    
+    SET lastDailyPriceId = (SELECT DailyPriceId FROM DailyPrice ORDER BY DailyPriceId DESC LIMIT 1);
+    
+    #Existiert schon eine Autoklasse mit einem bestimmten Tagespreis, wird psydomässig die AutoKlasse updatet
+    #Ansonsten wird eine neue Autoklass mit dem letzten Tagespreis Kombination erstellt
+    IF (EXISTS(SELECT * FROM CarClass WHERE CarClass = iCarClass AND FK_DailyPriceId = lastDailyPriceId))
+    THEN
+		UPDATE CarClass SET CarClass = iCarClass, FK_DailyPriceId = lastDailyPriceId
+        WHERE CarClass = iCarClass AND FK_DailyPriceId = lastDailyPriceId; 
+    ELSE
+		INSERT INTO CarClass (CarClass, FK_DailyPriceId)
+		VALUES
+			(iCarClass, lastDailyPriceId);
+    END IF;
+    
+    SET lastCarClassId = (SELECT CarClassId FROM CarClass ORDER BY CarClassId DESC LIMIT 1);
+    
+    INSERT INTO Cars ( Seriennummer, Marke, Farbe, FK_CarClassId)
+	VALUES
+		(iSeriennummer, iMarke, iFarbe, lastCarClassId);
+END //
+DELIMITER ;
+
+
+DELIMITER //
 CREATE PROCEDURE InsertIntoCustomer 
 (
 	IN iVorname VARCHAR(45),
@@ -71,7 +125,6 @@ BEGIN
     INSERT INTO Customer (Vorname, Nachname, Telefonnummer, FK_AdressId)
     VALUES
     (iVorname, iNachname, iTelefonnummer, lastAdressId);
-    
 END //
 DELIMITER ;
 

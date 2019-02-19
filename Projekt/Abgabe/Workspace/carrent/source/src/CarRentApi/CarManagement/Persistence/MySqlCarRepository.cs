@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using CarRent.API.CarManagement.Domain;
 using MySql.Data.MySqlClient;
 
@@ -32,7 +33,8 @@ namespace CarRent.API.CarManagement.Persistence
             using (var cmd = _mySqlConnection.CreateCommand())
             {
                 cmd.CommandText =
-                    "SELECT * FROM (carrentdb.Cars INNER JOIN carrentdb.CarClass ON Cars.FK_CarClassId = CarClass.CarClassId) INNER JOIN carrentdb.DailyPrice ON CarClass.FK_DailyPriceId = DailyPrice.DailyPriceId";
+                    "SELECT * FROM (carrentdb.Cars INNER JOIN carrentdb.CarClass ON Cars.FK_CarClassId = CarClass.CarClassId)" +
+                    "INNER JOIN carrentdb.DailyPrice ON CarClass.FK_DailyPriceId = DailyPrice.DailyPriceId";
                 using (var reader = cmd.ExecuteReader())
                 {
                     while (reader.Read())
@@ -59,18 +61,22 @@ namespace CarRent.API.CarManagement.Persistence
             }
         }
 
-        public void InsertCarDetails(string marke, string seriennummer, string farbe)
+        public void InsertCarDetails(string waehrung, decimal preis, string seriennummer, string farbe, string marke, string autoKlasse)
         {
-            throw new NotImplementedException();
+            _mySqlConnection.Open();
+            using (var cmd = _mySqlConnection.CreateCommand())
+            {
+                cmd.CommandText = "InstertIntoCar";
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@iWaehrung", waehrung);
+                cmd.Parameters.AddWithValue("@iPreis", preis);
+                cmd.Parameters.AddWithValue("@iCarClass", autoKlasse);
+                cmd.Parameters.AddWithValue("@iMarke", marke);
+                cmd.Parameters.AddWithValue("@iSeriennummer", seriennummer);
+                cmd.Parameters.AddWithValue("@iFarbe", farbe);
+                cmd.ExecuteNonQuery();
+            }
+            _mySqlConnection.Close();
         }
-
-        //public void InsertCarDetails(string marke, string seriennummer, string farbe)
-        //{
-        //    _mySqlConnection.Open();
-        //    using (var cmd = _mySqlConnection.CreateCommand())
-        //    {
-        //    }
-        //    _mySqlConnection.Close();
-        //}
     }
 }
