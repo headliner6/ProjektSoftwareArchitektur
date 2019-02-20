@@ -4,7 +4,7 @@ INSERT INTO DailyPrice (Waehrung, Preis, Datum)
 VALUES
 	('CHF', 125.00, NOW());
     
-INSERT INTO CarClass (CarClass, FK_DailyPriceId)
+INSERT INTO CarClass (Class, FK_DailyPriceId)
 VALUES
 	('Sport', 1),
 	('Luxus', 1);
@@ -38,3 +38,5 @@ VALUES
     #SELECT * FROM DailyPrice WHERE Waehrung = 'USD';
     
     #CALL InstertIntoCar('USD', 66.66, 'Luxus', 'AUDI', '1233', 'GELB');
+    
+    SELECT * FROM (carrentdb.Cars INNER JOIN carrentdb.CarClass ON Cars.FK_CarClassId = CarClass.CarClassId) INNER JOIN carrentdb.DailyPrice ON CarClass.FK_DailyPriceId = DailyPrice.DailyPriceId WHERE CarClass.Class='Luxus'

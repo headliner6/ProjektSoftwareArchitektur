@@ -21,6 +21,11 @@ namespace CarRent.API.CarManagement.Domain
             return this._carRepository.GetAllCars();
         }
 
+        public IReadOnlyList<Car> GetAllCars(string autoKlasse)
+        {
+            return this._carRepository.GetAllCars(autoKlasse);
+        }
+
         public void InsertCarDetails(string waehrung, decimal preis, string seriennummer, string farbe, string marke, string autoKlasse)
         {
             this._carRepository.InsertCarDetails(waehrung, preis, seriennummer, farbe, marke, autoKlasse);

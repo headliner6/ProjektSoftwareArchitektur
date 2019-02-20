@@ -37,10 +37,11 @@ namespace CarRent.API.CarManagement.Controller
         }
 
         // GET: api/Car
-        [HttpGet("{autoKlasse}", Name = "GetCarClass")]
-        public IEnumerable<Car> GetAllCarClassDtos(string autoKlasse)
+        [HttpGet("{autoKlasse}", Name = "GetAllCarClass")]
+        public IEnumerable<CarClassDto> GetAllCarClassDtos(string autoKlasse)
         {
-            return null;
+            IReadOnlyList<Car> cars = _carService.GetAllCars(autoKlasse);
+            return cars.Select(c => new CarClassDto(c));
         }
 
         // POST: api/Car

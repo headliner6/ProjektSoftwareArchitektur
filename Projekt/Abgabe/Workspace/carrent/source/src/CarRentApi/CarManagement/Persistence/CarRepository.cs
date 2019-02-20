@@ -23,6 +23,11 @@ namespace CarRent.API.CarManagement.Persistence
             return null;
         }
 
+        public IReadOnlyList<Car> GetAllCars(string autoKlasse)
+        {
+            throw new NotImplementedException();
+        }
+
         public void InsertCarDetails(string waehrung, decimal preis, string seriennummer, string farbe, string marke, string autoKlasse)
         {
             throw new NotImplementedException();
