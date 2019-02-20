@@ -38,7 +38,7 @@ namespace CarRent.API.CarManagement.Controller
 
         // GET: api/Car
         [HttpGet("{autoKlasse}", Name = "GetCarClass")]
-        public IEnumerable<Car> GetCarClasses()
+        public IEnumerable<Car> GetAllCarClassDtos(string autoKlasse)
         {
             return null;
         }
@@ -54,13 +54,6 @@ namespace CarRent.API.CarManagement.Controller
         public void AutoVermietet(string seriennummer)
         {
             _carService.AutoVermietet(seriennummer, true);
-        }
-
-
-        // PUT: api/Car/5
-        [HttpPut("{marke}")] // TODO: Parameter "Marke", "Seriennummer", "Typ", "Farbe" soll von der Angular App übergeben werden
-        public void Put(int marke, [FromBody] string value)
-        {
         }
         
         [HttpPut("{id}")]
