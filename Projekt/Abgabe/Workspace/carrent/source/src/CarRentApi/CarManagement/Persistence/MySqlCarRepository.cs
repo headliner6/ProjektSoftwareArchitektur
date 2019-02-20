@@ -53,6 +53,7 @@ namespace CarRent.API.CarManagement.Persistence
                             reader.GetString("Marke"),
                             reader.GetString("Seriennummer"),
                             reader.GetString("Farbe"),
+                            reader.GetBoolean("Vermietet"),
                             carClass
                             ));
                     }
@@ -88,6 +89,7 @@ namespace CarRent.API.CarManagement.Persistence
                             reader.GetString("Marke"),
                             reader.GetString("Seriennummer"),
                             reader.GetString("Farbe"),
+                            reader.GetBoolean("Vermietet"),
                             carClass
                             ));
                     }

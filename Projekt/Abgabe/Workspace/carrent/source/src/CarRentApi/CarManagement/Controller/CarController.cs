@@ -57,16 +57,6 @@ namespace CarRent.API.CarManagement.Controller
             _carService.AutoVermietet(seriennummer, true);
         }
         
-        [HttpPut("{id}")]
-        public ActionResult UpdateCarDetails(int id, [FromBody]CarDto carModel)
-        {
-            // get car via carservice (filter int id)
-            // wenn nicht gefunden -> return NotFound();
-            // map dto -> car
-            //_carService.AutoVermietet(id);
-            throw new NotImplementedException();
-        }
-
         // DELETE: api/ApiWithActions/5
         [HttpDelete("{id}")]
         public void Delete(int id)

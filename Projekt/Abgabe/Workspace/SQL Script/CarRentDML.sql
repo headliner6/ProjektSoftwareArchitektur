@@ -4,7 +4,7 @@ INSERT INTO DailyPrice (Waehrung, Preis, Datum)
 VALUES
 	('CHF', 125.00, NOW());
     
-INSERT INTO CarClass (Class, FK_DailyPriceId)
+INSERT INTO CarClass (CarClass, FK_DailyPriceId)
 VALUES
 	('Sport', 1),
 	('Luxus', 1);
@@ -24,12 +24,12 @@ VALUES
 	('Hans', 'Muster', '+41 HANS MUSTER', 1),
     ('Fritz', 'Test', '+41 FRITZ TEST', 2);
     
-	SELECT * FROM (Cars INNER JOIN CarClass ON Cars.FK_CarClassId = CarClass.CarClassId)
-    INNER JOIN DailyPrice ON DailyPrice.DailyPriceId = CarClass.FK_DailyPriceId;
+	#SELECT * FROM (Cars INNER JOIN CarClass ON Cars.FK_CarClassId = CarClass.CarClassId)
+    #INNER JOIN DailyPrice ON DailyPrice.DailyPriceId = CarClass.FK_DailyPriceId;
     
-    SELECT * FROM Cars;
-    SELECT * FROM DailyPrice;
-    SELECT * FROM CarClass;
+    #SELECT * FROM Cars;
+    #SELECT * FROM DailyPrice;
+    #SELECT * FROM CarClass;
     #SELECT * FROM Adress;
     #SELECT * FROM Customer;
     #DELETE FROM Customer WHERE CustomerId = 3;
@@ -39,4 +39,4 @@ VALUES
     
     #CALL InstertIntoCar('USD', 66.66, 'Luxus', 'AUDI', '1233', 'GELB');
     
-    SELECT * FROM (carrentdb.Cars INNER JOIN carrentdb.CarClass ON Cars.FK_CarClassId = CarClass.CarClassId) INNER JOIN carrentdb.DailyPrice ON CarClass.FK_DailyPriceId = DailyPrice.DailyPriceId WHERE CarClass.Class='Luxus'
+    SELECT * FROM (carrentdb.Cars INNER JOIN carrentdb.CarClass ON Cars.FK_CarClassId = CarClass.CarClassId) INNER JOIN carrentdb.DailyPrice ON CarClass.FK_DailyPriceId = DailyPrice.DailyPriceId WHERE CarClass.CarClass='Luxus'
