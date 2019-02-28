@@ -46,9 +46,10 @@ namespace CarRent.API.CarManagement.Controller
 
         // POST: api/Car
         [HttpPost]
-        public void Post(/*[FromBody] string value*/)
+        public void Post([FromBody] Car c)
         {
-            _carService.InsertCarDetails("EUR", (decimal)1.11, "EU5566", "Silber", "Porsche", "Luxus");
+            //_carService.InsertCarDetails("EUR", (decimal)1.11, "EU5566", "Silber", "Porsche", "Luxus");
+            _carService.InsertCarDetails(c.AutoKlasse.DailyPrice.Currency, c.AutoKlasse.DailyPrice.Price, c.Seriennummer, c.Farbe, c.Marke, c.AutoKlasse.AutoKlasse.ToString());
         }
 
         [HttpPut("{seriennummer}")]
@@ -58,8 +59,8 @@ namespace CarRent.API.CarManagement.Controller
         }
         
         // DELETE: api/ApiWithActions/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
+        [HttpDelete("{seriennummer}")]
+        public void Delete(string seriennummer)
         {
         }
     }

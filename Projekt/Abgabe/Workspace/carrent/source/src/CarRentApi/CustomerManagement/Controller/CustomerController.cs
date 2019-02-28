@@ -19,30 +19,25 @@ namespace CarRent.API.CustomerManagement.Controller
 
         // GET: api/Cusomter
         [HttpGet]
-        public IEnumerable<CustomerDto> Get()
+        public IEnumerable<CustomerDto> GetAllCustomerDtos()
         {
             IReadOnlyList<Customer> customers = _customerService.GetAll();
             return customers.Select(c => new CustomerDto(c.Kundennummer, c.Vorname, c.Nachname, c.Telefonnummer, c.Adresse.Strasse, c.Adresse.Strassennummer, c.Adresse.PLZ, c.Adresse.Ort));
         }
 
         // GET: api/Cusomter/5
-        [HttpGet("{id}", Name = "GetCustomer")]
-        public string Get(int id)
+        [HttpGet("{kundennummer}", Name = "GetCustomerByCustomernumber")]
+        public string Get(int kundennummer)
         {
             return "value";
         }
 
         // POST: api/Cusomter
         [HttpPost]
-        public void Post(/*[FromBody] string value*/)
+        public void Post([FromBody] Customer customer)
         {
-            _customerService.InsertCustomerDetails("M.", "W.", "+41678787977", "Teststrasse", "25", "9000", "St. Gallen");
-        }
-
-        // PUT: api/Cusomter
-        [HttpPut]
-        public void Put()
-        {
+            //_customerService.InsertCustomerDetails("M.", "W.", "+41678787977", "Teststrasse", "25", "9000", "St. Gallen");
+            _customerService.InsertCustomerDetails(customer.Vorname, customer.Nachname, customer.Telefonnummer, customer.Adresse.Strasse, customer.Adresse.Strassennummer, customer.Adresse.PLZ, customer.Adresse.Ort);
         }
 
         // PUT: api/Cusomter/5
