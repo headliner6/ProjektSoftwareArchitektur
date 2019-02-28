@@ -39,4 +39,4 @@ VALUES
     
     #CALL InstertIntoCar('USD', 66.66, 'Luxus', 'AUDI', '1233', 'GELB');
     
-    SELECT * FROM (carrentdb.Cars INNER JOIN carrentdb.CarClass ON Cars.FK_CarClassId = CarClass.CarClassId) INNER JOIN carrentdb.DailyPrice ON CarClass.FK_DailyPriceId = DailyPrice.DailyPriceId WHERE CarClass.CarClass='Luxus'
+    #SELECT * FROM (carrentdb.Cars INNER JOIN carrentdb.CarClass ON Cars.FK_CarClassId = CarClass.CarClassId) INNER JOIN carrentdb.DailyPrice ON CarClass.FK_DailyPriceId = DailyPrice.DailyPriceId WHERE CarClass.CarClass='Luxus'
