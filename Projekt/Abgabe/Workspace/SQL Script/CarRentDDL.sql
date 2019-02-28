@@ -68,7 +68,7 @@ BEGIN
     DECLARE lastCarClassId INT;
     
     #Existiert die Währung schon, wird der Preis und das Tagesdatum angepasst
-    #Ansonsten wird die gefundene Währung updatet
+    #Ansonsten wird ein neuer Datensatz erstellt
     IF(EXISTS(SELECT * FROM DailyPrice WHERE Waehrung = iWaehrung))
     THEN
 		UPDATE DailyPrice SET Preis = iPreis, Datum = NOW()
